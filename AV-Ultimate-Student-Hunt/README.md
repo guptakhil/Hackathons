@@ -8,7 +8,7 @@ They now have this data over a long period of time and are looking for experts l
  
 Go, help the mayor of Gardenia! He has high hopes from Analytics Vidhya community! All the best!
 
-Key Points:<br>
+<h3>Key Points:</h3>
 1. It has data for period Sep'1990 to Dec'2005.<br>
 2. The training data for period Sep'1990 to Dec'2001.<br>
 3. Public leaderboard is for first 2 years of the test dataset (Jan'2002 and Dec'2003) and rest of test dataset is used for Private leaderboard.<br>

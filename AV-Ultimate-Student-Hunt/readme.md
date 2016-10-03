@@ -6,7 +6,7 @@ The country takes pride in the way it has maintained its natural resources and G
  
 They now have this data over a long period of time and are looking for experts like yourself to look at the data and tell, if you can predict how many people will come to a park on a particular day, given the environmental information.
  
-Go, help the mayor of Gardenia! He has high hopes from Analytics Vidhya community! All the best!
+Go, help the mayor of Gardenia!
 
 <h3>Key Points:</h3>
 1. It has data for period Sep'1990 to Dec'2005.<br>

@@ -38,6 +38,6 @@ It gave me a better idea of how my model will perform on the private leaderboard
 Park_ID 19 was dropped from the model because it wasn't present in the test data, and there was no point in feeding noise to the model.
 
 ###Result
-Public LB Score: 105.82 (Rank 4)
-Private LB Score: 92.70 (Rank 4)
+#####Public LB Score: 105.82 (Rank 4)<br>
+#####Private LB Score: 92.70 (Rank 4)
 

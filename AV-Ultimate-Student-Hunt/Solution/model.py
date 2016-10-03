@@ -67,6 +67,7 @@ def noise_removal(dataframes): #Transformation/Scaling down of noise in the data
 	#print "Noise Removal Done."
 
 def run_model(model,dtrain,predictor_var,target,scoring_method='mean_squared_error'):
+#For cross-validation
     #cv_method = KFold(len(dtrain),5)
     #cv_scores = cross_val_score(model,dtrain[predictor_var],dtrain[target],cv=cv_method,scoring=scoring_method)
     #print cv_scores, np.mean(cv_scores), np.sqrt((-1)*np.mean(cv_scores))
@@ -84,7 +85,7 @@ def run_model(model,dtrain,predictor_var,target,scoring_method='mean_squared_err
         
     #print math.sqrt(mean_squared_error(dtest_for_val['Footfall'],pred_for_val))
 
-def generate_csv(model,dtrain,dtest,predictor_var,target,filename):
+def generate_csv(model,dtrain,dtest,predictor_var,target,filename): #Generation of Solution file
     dtrain_ini = dtrain[predictor_var]
     model.fit(dtrain_ini,dtrain[target])
     dtest_ini = dtest[predictor_var]
@@ -139,6 +140,7 @@ for index,row in test.iterrows():
 missing_value_imputation(continuous_var,dataframes) #Treating Missing Values
 noise_removal(dataframes) #Removing Noise from the Data
 
+#Feature Transformations:
 train['DOW_Bin'] = train['Direction_Of_Wind']/60
 test['DOW_Bin'] = test['Direction_Of_Wind']/60
 
@@ -171,6 +173,7 @@ test['Max_Atm_Pres'] = (test['Max_Atmospheric_Pressure']-7890)/40
 train['Var1_Bin'] = train['Var1']/20
 test['Var1_Bin'] = test['Var1']/20
 
+#Combining values in Categorical variables
 for dataframe_name in dataframes: #Date Binning
 	dataframe_name['Dat_Bin'] = 0
 	for index,row in dataframe_name.iterrows():
@@ -269,12 +272,12 @@ for dataframe_name in dataframes: #Park Binning
 	    dataframe_name.set_value(index,'Park_Bin',s)
 
 train2 = train[train['Park_ID']!=7]
+#Park_ID 7 (or 19) is not there in test. No point in feeding it to train data.
 gbr = GradientBoostingRegressor(n_estimators=900)
+#Gradient Boosting Regressor with estimators 900 was used. It could have been improved after parameter tuning.
+#XGB also be tried.
 predictor_var = ['Var1_Bin','Park_Bin','Dat_Bin','Month_Bin','DOW_Bin','Aver_Brez_Speed','Max_Brez_Speed','Min_Brez_Speed','Average_Mois_Bin','Max_Mois_Bin','Min_Mois_Bin','Min_Ambi_Poll','Max_Ambi_Poll','Location_Type']
 target = 'Footfall'
-#print "run_model started."
-#run_model(gbr,train2,predictor_var,target)
-#print "generate_csv started."
 generate_csv(gbr,train2,test,predictor_var,target,'Final_Submission.csv')
 
 

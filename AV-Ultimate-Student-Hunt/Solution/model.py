@@ -68,22 +68,22 @@ def noise_removal(dataframes): #Transformation/Scaling down of noise in the data
 
 def run_model(model,dtrain,predictor_var,target,scoring_method='mean_squared_error'):
 #For cross-validation
-    #cv_method = KFold(len(dtrain),5)
-    #cv_scores = cross_val_score(model,dtrain[predictor_var],dtrain[target],cv=cv_method,scoring=scoring_method)
-    #print cv_scores, np.mean(cv_scores), np.sqrt((-1)*np.mean(cv_scores))
+    cv_method = KFold(len(dtrain),5)
+    cv_scores = cross_val_score(model,dtrain[predictor_var],dtrain[target],cv=cv_method,scoring=scoring_method)
+    print cv_scores, np.mean(cv_scores), np.sqrt((-1)*np.mean(cv_scores))
     
-    #dtrain_for_val = dtrain[dtrain['Year']<2000]
-    #dtest_for_val = dtrain[dtrain['Year']>1999]
-    #cv_method = KFold(len(dtrain_for_val),5)
-    #cv_scores_2 = cross_val_score(model,dtrain_for_val[predictor_var],dtrain_for_val[target],cv=cv_method,scoring=scoring_method)
-    #print cv_scores_2, np.mean(cv_scores_2)
+    dtrain_for_val = dtrain[dtrain['Year']<2000]
+    dtest_for_val = dtrain[dtrain['Year']>1999]
+    cv_method = KFold(len(dtrain_for_val),5)
+    cv_scores_2 = cross_val_score(model,dtrain_for_val[predictor_var],dtrain_for_val[target],cv=cv_method,scoring=scoring_method)
+    print cv_scores_2, np.mean(cv_scores_2)
     
-    #dtrain_for_val_ini = dtrain_for_val[predictor_var]
-    #dtest_for_val_ini = dtest_for_val[predictor_var]
-    #model.fit(dtrain_for_val_ini,dtrain_for_val[target])
-    #pred_for_val = model.predict(dtest_for_val_ini)
+    dtrain_for_val_ini = dtrain_for_val[predictor_var]
+    dtest_for_val_ini = dtest_for_val[predictor_var]
+    model.fit(dtrain_for_val_ini,dtrain_for_val[target])
+    pred_for_val = model.predict(dtest_for_val_ini)
         
-    #print math.sqrt(mean_squared_error(dtest_for_val['Footfall'],pred_for_val))
+    print math.sqrt(mean_squared_error(dtest_for_val['Footfall'],pred_for_val))
 
 def generate_csv(model,dtrain,dtest,predictor_var,target,filename): #Generation of Solution file
     dtrain_ini = dtrain[predictor_var]
@@ -98,18 +98,21 @@ def generate_csv(model,dtrain,dtest,predictor_var,target,filename): #Generation 
         i+=1
     test_for_sub.to_csv(filename,columns=('ID',target),index=False)
 
+#Reading the data
 train = pd.read_csv('train.csv')
 test = pd.read_csv('test.csv')
 
+#Dividing features into Categorical and Continuous
 categorical_var = ['Park_ID','Dat','Month','Year','Location_Type']
 continuous_var = ['Direction_Of_Wind','Average_Breeze_Speed','Max_Breeze_Speed','Min_Breeze_Speed','Var1','Average_Atmospheric_Pressure','Max_Atmospheric_Pressure','Min_Atmospheric_Pressure','Min_Ambient_Pollution','Max_Ambient_Pollution','Average_Moisture_In_Park','Max_Moisture_In_Park','Min_Moisture_In_Park']
 
 dataframes = [train,test]
 
+#Park_ID range: [12,39] -> [0,27], only for the sake of ease
 train['Park_ID'] = train['Park_ID'] - 12
 test['Park_ID'] = test['Park_ID'] - 12
 
-#Year
+#Breaking 'date' into Date/Month/Year
 train['Year'] = 0
 for index,row in train.iterrows():
     r = row['Date']
@@ -118,7 +121,7 @@ test['Year'] = 0
 for index,row in test.iterrows():
     r = row['Date']
     test.set_value(index,'Year',int(r[6])*1000+int(r[7])*100+int(r[8])*10+int(r[9]))
-#Month
+
 train['Month'] = 0
 for index,row in train.iterrows():
     r = row['Date']
@@ -127,7 +130,7 @@ test['Month'] = 0
 for index,row in test.iterrows():
     r = row['Date']
     test.set_value(index,'Month',int(r[3])*10+int(r[4]))
-#Date
+
 train['Dat'] = 0
 for index,row in train.iterrows():
     r = row['Date']
@@ -140,7 +143,7 @@ for index,row in test.iterrows():
 missing_value_imputation(continuous_var,dataframes) #Treating Missing Values
 noise_removal(dataframes) #Removing Noise from the Data
 
-#Feature Transformations:
+#Feature Transformations after visualisations(Boxplots and Scatter plots):
 train['DOW_Bin'] = train['Direction_Of_Wind']/60
 test['DOW_Bin'] = test['Direction_Of_Wind']/60
 

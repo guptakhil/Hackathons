@@ -1,3 +1,5 @@
+#Python code for Solution to the given problem
+
 import pandas as pd
 import numpy as np
 import scipy.stats as st
@@ -7,7 +9,7 @@ from sklearn.cross_validation import cross_val_score
 from sklearn.cross_validation import KFold
 from sklearn.metrics import mean_squared_error
 
-def missing_value_imputation(continuous_var,dataframes):
+def missing_value_imputation(continuous_var,dataframes): #Filling the missing values
 	loc_1 = [4,3,12,22]
 	loc_2 = [23,20,17,16,14,11,9,5]
 	loc_3 = [27,26,25,21,18,15,13,8,2,0]
@@ -29,9 +31,9 @@ def missing_value_imputation(continuous_var,dataframes):
 				        if(row['Park_ID']==park and math.isnan(row[var])):
 				        	dataframe_name.set_value(index,var,dic[row['Date']])
 				loc_value+=1
-	print "Missing Value Imputation Done."
+	#print "Missing Value Imputation Done."
 
-def noise_removal(dataframes):
+def noise_removal(dataframes): #Transformation/Scaling down of noise in the data
 	for dataframe_name in dataframes:
 		for index,row in dataframe_name.iterrows():
 			if(row['Var1']>400):
@@ -62,25 +64,25 @@ def noise_removal(dataframes):
 				a1 = row['Min_Atmospheric_Pressure']+50.0
 				dataframe_name.set_value(index,'Min_Atmospheric_Pressure',a1)
 
-	print "Noise Removal Done."
+	#print "Noise Removal Done."
 
 def run_model(model,dtrain,predictor_var,target,scoring_method='mean_squared_error'):
-    cv_method = KFold(len(dtrain),5)
-    cv_scores = cross_val_score(model,dtrain[predictor_var],dtrain[target],cv=cv_method,scoring=scoring_method)
-    print cv_scores, np.mean(cv_scores), np.sqrt((-1)*np.mean(cv_scores))
+    #cv_method = KFold(len(dtrain),5)
+    #cv_scores = cross_val_score(model,dtrain[predictor_var],dtrain[target],cv=cv_method,scoring=scoring_method)
+    #print cv_scores, np.mean(cv_scores), np.sqrt((-1)*np.mean(cv_scores))
     
-    dtrain_for_val = dtrain[dtrain['Year']<2000]
-    dtest_for_val = dtrain[dtrain['Year']>1999]
+    #dtrain_for_val = dtrain[dtrain['Year']<2000]
+    #dtest_for_val = dtrain[dtrain['Year']>1999]
     #cv_method = KFold(len(dtrain_for_val),5)
     #cv_scores_2 = cross_val_score(model,dtrain_for_val[predictor_var],dtrain_for_val[target],cv=cv_method,scoring=scoring_method)
     #print cv_scores_2, np.mean(cv_scores_2)
     
-    dtrain_for_val_ini = dtrain_for_val[predictor_var]
-    dtest_for_val_ini = dtest_for_val[predictor_var]
-    model.fit(dtrain_for_val_ini,dtrain_for_val[target])
-    pred_for_val = model.predict(dtest_for_val_ini)
+    #dtrain_for_val_ini = dtrain_for_val[predictor_var]
+    #dtest_for_val_ini = dtest_for_val[predictor_var]
+    #model.fit(dtrain_for_val_ini,dtrain_for_val[target])
+    #pred_for_val = model.predict(dtest_for_val_ini)
         
-    print math.sqrt(mean_squared_error(dtest_for_val['Footfall'],pred_for_val))
+    #print math.sqrt(mean_squared_error(dtest_for_val['Footfall'],pred_for_val))
 
 def generate_csv(model,dtrain,dtest,predictor_var,target,filename):
     dtrain_ini = dtrain[predictor_var]
@@ -95,8 +97,8 @@ def generate_csv(model,dtrain,dtest,predictor_var,target,filename):
         i+=1
     test_for_sub.to_csv(filename,columns=('ID',target),index=False)
 
-train = pd.read_csv('/Users/Akhil/Documents/Data Science/USH/train.csv')
-test = pd.read_csv('/Users/Akhil/Documents/Data Science/USH/test.csv')
+train = pd.read_csv('train.csv')
+test = pd.read_csv('test.csv')
 
 categorical_var = ['Park_ID','Dat','Month','Year','Location_Type']
 continuous_var = ['Direction_Of_Wind','Average_Breeze_Speed','Max_Breeze_Speed','Min_Breeze_Speed','Var1','Average_Atmospheric_Pressure','Max_Atmospheric_Pressure','Min_Atmospheric_Pressure','Min_Ambient_Pollution','Max_Ambient_Pollution','Average_Moisture_In_Park','Max_Moisture_In_Park','Min_Moisture_In_Park']
@@ -165,6 +167,9 @@ train['Min_Atm_Pres'] = (train['Min_Atmospheric_Pressure']-7890)/40
 test['Min_Atm_Pres'] = (test['Min_Atmospheric_Pressure']-7890)/40
 train['Max_Atm_Pres'] = (train['Max_Atmospheric_Pressure']-7890)/40
 test['Max_Atm_Pres'] = (test['Max_Atmospheric_Pressure']-7890)/40
+
+train['Var1_Bin'] = train['Var1']/20
+test['Var1_Bin'] = test['Var1']/20
 
 for dataframe_name in dataframes: #Date Binning
 	dataframe_name['Dat_Bin'] = 0
@@ -263,16 +268,13 @@ for dataframe_name in dataframes: #Park Binning
 	        s = 19
 	    dataframe_name.set_value(index,'Park_Bin',s)
 
-train['Var1_Bin'] = train['Var1']/20
-test['Var1_Bin'] = test['Var1']/20
-
 train2 = train[train['Park_ID']!=7]
 gbr = GradientBoostingRegressor(n_estimators=900)
 predictor_var = ['Var1_Bin','Park_Bin','Dat_Bin','Month_Bin','DOW_Bin','Aver_Brez_Speed','Max_Brez_Speed','Min_Brez_Speed','Average_Mois_Bin','Max_Mois_Bin','Min_Mois_Bin','Min_Ambi_Poll','Max_Ambi_Poll','Location_Type']
 target = 'Footfall'
-print "run_model started."
-run_model(gbr,train2,predictor_var,target)
-print "generate_csv started."
+#print "run_model started."
+#run_model(gbr,train2,predictor_var,target)
+#print "generate_csv started."
 generate_csv(gbr,train2,test,predictor_var,target,'Final_Submission.csv')
 
 

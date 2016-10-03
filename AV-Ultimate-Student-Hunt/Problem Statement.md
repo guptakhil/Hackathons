@@ -6,33 +6,11 @@ They now have this data over a long period of time and are looking for experts l
  
 Go, help the mayor of Gardenia! He has high hopes from Analytics Vidhya community! All the best!
 
-Key Points:
-1. It has data for period Sep'1990 to Dec'2005
-2. The training data for period Sep'1990 to Dec'2001
-3. Public leaderboard is for first 2 years of the test dataset (Jan'2002 and Dec'2003) and rest of test dataset is used for Private leaderboard
-4. Evaluation Metric is RMSE.
-5. You are expected to upload the solution in the format of "sample_submission.csv".
-
-Data:
-
-Variable                            Definition
-ID                                  Unique ID
-Park_ID                             Unique ID for Parks
-Date                                Calendar Date
-Direction_Of_Wind                   Direction of winds in degrees
-Average_Breeze_Speed                Daily average Breeze speed
-Max_Breeze_Speed                    Daily maximum Breeze speed
-Min_Breeze_Speed                    Daily minimum Breeze speed
-Var1                                A continuous feature
-Average_Atmospheric_Pressure        Daily average atmospheric pressure
-Max_Atmospheric_Pressure            Daily maximum atmospheric pressure
-Min_Atmospheric_Pressure            Daily minimum atmospheric pressure
-Min_Ambient_Pollution               Daily minimum Ambient pollution
-Max_Ambient_Pollution               Daily maximum Ambient pollution
-Average_Moisture_In_Park            Daily average moisture
-Max_Moisture_In_Park                Daily maximum moisture
-Min_Moisture_In_Park                Daily minimum moisture
-Location_Type                       Location Type (1/2/3/4)
-Footfall                            Target Variable: Daily Footfall
+Key Points:<br>
+1. It has data for period Sep'1990 to Dec'2005<br>
+2. The training data for period Sep'1990 to Dec'2001<br>
+3. Public leaderboard is for first 2 years of the test dataset (Jan'2002 and Dec'2003) and rest of test dataset is used for Private leaderboard.<br>
+4. Evaluation Metric is RMSE.<br>
+5. You are expected to upload the solution in the format of "sample_submission.csv".<br>
 
 Source: https://datahack.analyticsvidhya.com/contest/the-ultimate-student-hunt/

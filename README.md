@@ -1,2 +1,2 @@
 # ML
-This contains all scripts for ML problems I have solved.
+Solutions and approaches to Machine Learning problems.

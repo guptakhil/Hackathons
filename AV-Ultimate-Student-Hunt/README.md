@@ -1,3 +1,5 @@
+<h1>Ultimate Student Hunt</h1>
+
 Welcome to Gardenia - A country which believes in creating a harmony between technology and natural resources. Over the years, Gardenia has come up with ways to utilise natural resources effectively and they have enabled this with use of cutting edge technology.
  
 The country takes pride in the way it has maintained its natural resources and Gardens. Now, the government of Gardenia wants to use data science to understand the health habits of their citizens. So, they started to capture several variables from various parks in the country.

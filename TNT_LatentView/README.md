@@ -14,3 +14,11 @@ You will have to select a 15 man squad, consisting of:<br>
 <li>3 Strikers</li>
 </ul>
 Note – Do not use any external data source for this analysis. Confine the analysis to the list of players provided with historical data.
+
+<h2>Description of Files</h2>
+
+<h4>Football.ipynb</h4> - iPython Notebook for Approach
+<br>
+<h4>Dream Team.png</h4> - Infographic of the Dream Team for FPL 2016/17
+<br>
+<h4>

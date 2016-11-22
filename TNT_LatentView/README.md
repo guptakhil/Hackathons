@@ -8,6 +8,10 @@ Forecast the Total scores of the players currently playing in the English Premie
 <h4>Squad Size:</h4>
 You will have to select a 15 man squad, consisting of:<br>
 <ul>
-<li>x</li>
+<li>2 Goalkeepers</li>
+<li>5 Defenders</li>
+<li>5 Midfielders</li>
+<li>3 Strikers</li>
 </ul>
-
+<br>
+Note – Do not use any external data source for this analysis. Confine the analysis to the list of players provided with historical data.

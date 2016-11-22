@@ -17,8 +17,7 @@ Note – Do not use any external data source for this analysis. Confine the anal
 
 <h2>Description of Files</h2>
 
-<b>Football.ipynb<b>
- - iPython Notebook for Approach
+<b>Football.ipynb</b> - iPython Notebook for Approach
 <br>
 <b>Dream Team.png</b>
  - Infographic of the Dream Team for FPL 2016/17

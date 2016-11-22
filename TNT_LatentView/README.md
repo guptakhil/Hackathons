@@ -19,18 +19,14 @@ Note – Do not use any external data source for this analysis. Confine the anal
 
 <b>Football.ipynb</b> - iPython Notebook for Approach
 <br>
-<b>Dream Team.png</b>
- - Infographic of the Dream Team for FPL 2016/17
+<b>Dream Team.png</b> - Infographic of the Dream Team for FPL 2016/17
 <br>
-<b>FPL Insights.png</b>
- - Insights for the season
+<b>FPL Insights.png</b> - Insights for the season
 <br>
-<b>Methodology.pdf</b>
- - Detailed approach followed for analysis
+<b>Methodology.pdf</b> - Detailed approach followed for analysis
 <br>
-<b>Player Scores.xlsx</b>
- - Final scores of all players
+<b>Player Scores.xlsx</b> - Final scores of all players
 <br><br>
-<b>P.S. - Won the competition! :D</b>
+P.S. - Won the competition! :D
 <br><br>
 Suggestions are welcome.

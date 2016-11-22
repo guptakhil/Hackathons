@@ -31,6 +31,7 @@ Detailed approach followed for analysis
 <br>
 <h4>Player Scores.xlsx</h4>
 Final scores of all players
-<br>
-P.S. - Won the competition! :D<br>
+<br><br>
+<b>P.S. - Won the competition! :D<b>
+<br><br>
 Suggestions are welcome.

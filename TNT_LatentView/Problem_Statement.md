@@ -5,4 +5,5 @@ The UEFA Euro and the Olympics have been the fuel for sports enthusiasts, but th
 We will provide you with data for the last 3 seasons of FPL. This data will include the position, club and total score for each player. We will also give you the pricing for each player as of 2016/17 season.<br><br>
 <h4>What we expect from you?</h4>
 Forecast the Total scores of the players currently playing in the English Premier League, for the 2016\17 Season. With a fixed budget of £100 Million, come up with the “Dream Team” giving the highest team score, for the 2016\17 Season. Below are a few rules to go by:<br>
+<
 
